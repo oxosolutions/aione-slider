@@ -100,4 +100,174 @@ class Aione_Slider_Public {
 
 	}
 
+	public function aione_slider_shortcode( $atts ) {
+		$atts = shortcode_atts( array(
+			'id' => '',
+			'class' => '',
+		), $atts, 'aione-slider' );
+
+		$output = '';
+		$slider_id = $atts['id'];
+
+		if ( get_post_status ( $slider_id ) == 'publish' ) {
+			if ( get_post_type( $slider_id ) == 'aione-slider' ) {
+				$slider_type = get_field('aione_slider_type', $slider_id);
+				$items = get_field('items', $slider_id);
+				$theme = get_field('theme', $slider_id);
+				$margin = get_field('margin', $slider_id);
+				$loop = get_field('loop', $slider_id);
+				$image_caption = get_field('image_caption', $slider_id);
+				$image_caption_title = get_field('image_caption_title', $slider_id);
+				$image_caption_description = get_field('image_caption_description', $slider_id);
+				$image_caption_link = get_field('image_caption_link', $slider_id);
+				$autohight = get_field('autohight', $slider_id);
+				$urlhashlistener = get_field('urlhashlistener', $slider_id);
+				$nav = get_field('nav', $slider_id);
+				$slideby = get_field('slideby', $slider_id);
+				$slidetransition = get_field('slidetransition', $slider_id);
+				$dots = get_field('dots', $slider_id);
+				$lazyload = get_field('lazyload', $slider_id);
+				$autoplay = get_field('autoplay', $slider_id);
+				$autoplaytimeout = get_field('autoplaytimeout', $slider_id);
+				$autoplayhoverpause = get_field('autoplayhoverpause', $slider_id);
+				$smartspeed = get_field('smartspeed', $slider_id);
+				$autoplayspeed = get_field('autoplayspeed', $slider_id);
+				$navspeed = get_field('navspeed', $slider_id);
+				$dotsspeed = get_field('dotsspeed', $slider_id);
+				$animation = get_field('animation', $slider_id);
+
+				$settings = array();
+				$settings['items'] = $items;
+				$settings['theme'] = $theme;
+				$settings['margin'] = $margin;
+				$settings['loop'] = $loop;
+				$settings['image_caption'] = $image_caption;
+				$settings['image_caption_title'] = $image_caption_title;
+				$settings['image_caption_description'] = $image_caption_description;
+				$settings['image_caption_link'] = $image_caption_link;
+				$settings['autohight'] = $autohight;
+				$settings['urlhashlistener'] = $urlhashlistener;
+				$settings['nav'] = $nav;
+				$settings['slideby'] = $slideby;
+				$settings['slidetransition'] = $slidetransition;
+				$settings['dots'] = $dots;
+				$settings['lazyload'] = $lazyload;
+				$settings['autoplay'] = $autoplay;
+				$settings['autoplaytimeout'] = $autoplaytimeout;
+				$settings['autoplayhoverpause'] = $autoplayhoverpause;
+				$settings['smartspeed'] = $smartspeed;
+				$settings['autoplayspeed'] = $autoplayspeed;
+				$settings['navspeed'] = $navspeed;
+				$settings['dotsspeed'] = $dotsspeed;
+				$settings['animation'] = $animation;
+				$skip_settings   = array(
+					'theme',
+					'caption',
+					'caption_title',
+					'caption_description',
+					'caption_link',
+					'URLhashListener',
+				);
+				$slider_classes = array('slider','owl-carousel');
+				$slider_data = array();
+
+				if(is_array($settings)){
+					foreach($settings as $setting_key => $setting_value){
+						if(in_array($setting_key, $skip_settings)){
+							continue;
+						}						
+						$setting_key = strtolower(preg_replace('/(?<!^)[A-Z]/', '-$0', $setting_key));
+						$slider_data[] = 'data-'.$setting_key.'="'.$setting_value.'" ';
+					}
+				}
+
+				$slider_classes[] = $settings['theme'];
+				$slider_classes = implode(" ",$slider_classes);
+				$slider_data = implode(" ",$slider_data);
+
+
+				if($slider_type == "image"){
+					$slides = get_field('aione_slider_images', $slider_id);
+					if(!empty($slides)):
+						$output .=  '<div id="aione_slider_'.$atts['id'].'" class="'.$slider_classes.'" '.$slider_data.'>';
+						foreach ($slides as $key => $slide) { //echo "<pre>";print_r($slide);echo "</pre>";
+							$output .= '<div class="slider-item">';
+							$output .= '<div class="slider-image">';
+							$output .= '<img src="'.$slide['url'].'" alt="'.$slide['alt'].'" />';
+							$output .= '</div>';
+							if($settings['image_caption']){
+								$output .= '<div class="slider-caption">';
+								if($settings['image_caption_title']){
+									$output .= '<h3 class="caption-title">'.$slide['caption'].'</h3>';
+								}
+								if($settings['image_caption_description']){
+									$output .= '<p class="caption-description">'.$slide['description'].'</p>';
+								}
+								$output .= '</div>';
+							}
+							$output .= '</div>';
+						}
+						$output .= '</div>';
+					endif;
+				}
+				if($slider_type == "post"){
+					$slider_post_type = get_field('aione_slider_post_type', $slider_id);
+					if($slider_post_type == ""){
+						$slider_post_type = "post";
+					}					
+					$slider_post_category = get_field('aione_slider_post_category', $slider_id);
+					//echo "<pre>";print_r($slider_post_category);echo "</pre>";	
+					$number_of_posts = get_field('aione_number_of_posts', $slider_id);	
+					$args = array(
+				      		'showposts' => $number_of_posts, //add -1 if you want to show all posts
+				      		'post_type' => $slider_post_type,
+				      		'tax_query' => array(
+				                array(
+				                    'taxonomy' => 'category',
+				                    'field' => 'id',
+				                    'terms' => $slider_post_category //pass your term name here
+				                )
+				            )
+				      	);				
+					$slides = get_posts( $args );
+					//echo "<pre>";print_r($slides);echo "</pre>";
+					if($slides){
+						$output .=  '<div id="aione_slider_'.$atts['id'].'" class="'.$slider_classes.'" '.$slider_data.'>';
+						foreach ($slides as $key => $slide) {
+							$output .= '<div class="slider-item">';
+							$output .= '<div class="slider-image">';
+							$output .= '<h3 class="title">'.$slide->post_title.'</h3>';
+							$output .= '<p class="description">'.$slide->post_content.'</p>';
+							$output .= '</div>';
+							$output .= '</div>';
+						}
+						$output .= '</div>';
+					}
+				}
+				if($slider_type == "text"){ 
+					$slides = get_field('aione_slider_slides', $slider_id);					
+					if(!empty($slides)):
+						$output .=  '<div id="aione_slider_'.$atts['id'].'" class="'.$slider_classes.'" '.$slider_data.'>';
+						foreach ($slides as $key => $slide) {
+							$output .= '<div class="slider-item">';
+							$output .= '<div class="slider-image">';
+							$output .= '<h3 class="title">'.$slide['slide_title'].'</h3>';
+							$output .= '<p class="description">'.$slide['slide_content'].'</p>';
+							$output .= '</div>';
+							$output .= '</div>';
+						}
+						$output .= '</div>';
+					endif;
+				}	
+				
+				$output .='<div class="aione-clear"></div>';		
+			} else {
+				$output .= '<div class="aione-message warning">Invalid Slider</div>';
+			}
+		} else {
+			$output .= '<div class="aione-message warning">Invalid Slider</div>';
+		}
+		return $output;
+	}
+
 }

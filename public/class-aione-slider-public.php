@@ -136,6 +136,109 @@ class Aione_Slider_Public {
 				$dotsspeed = get_field('dotsspeed', $slider_id);
 				$animation = get_field('animation', $slider_id);
 
+				/*
+
+				items
+				margin
+				loop
+				center
+				mouseDrag
+				touchDrag
+				pullDrag
+				freeDrag
+				stagePadding
+				merge
+				mergeFit
+				autoWidth
+				startPosition
+				URLhashListener
+				nav
+				rewind
+				navText
+				navElement
+				slideBy
+				slideTransition
+				dots
+				dotsEach
+				dotsData
+				lazyLoad
+				lazyLoadEager
+				autoplay
+				autoplayTimeout
+				autoplayHoverPause
+				smartSpeed
+				fluidSpeed
+				autoplaySpeed
+				navSpeed
+				dotsSpeed
+				dragEndSpeed
+				callbacks
+				responsive
+				responsiveRefreshRate
+				responsiveBaseElement
+				video
+				videoHeight
+				videoWidth
+				animateOut
+				animateIn
+				fallbackEasing
+				info
+				nestedItemSelector
+				itemElement
+				stageElement
+				navContainer
+				dotsContainer
+				checkVisible
+
+
+
+				data-items
+				data-margin
+				data-loop
+				data-center
+				data-mouse-drag
+				data-pull-drag
+				data-free-drag
+				data-stage-padding
+				data-merge
+				data-merge-fit
+				data-auto-width
+				data-auto-hight
+				data-start-position
+				data-nav
+				data-rewind
+				data-nav-text
+				data-nav-element
+				data-slide-by
+				data-slide-transition
+				data-dots
+				data-dots-each
+				data-dots-
+				data
+				data-lazy-load
+				data-lazy-load-eager
+				data-autoplay
+				data-autoplay-timeout
+				data-autoplay-hover-pause
+				data-smart-speed
+				data-autoplay-speed
+				data-nav-speed
+				data-dots-speed
+				data-drag-end-speed
+				data-callbacks
+				data-video
+				data-video-height
+				data-video-width
+				data-animate-out
+				data-animate-in
+				data-fallback-easing
+				data-item-element
+				data-stage-element
+				data-nav-container
+				data-dots-container
+				data-check-visible
+				*/
+
 				$settings = array();
 				$settings['items'] = $items;
 				$settings['theme'] = $theme;
@@ -151,15 +254,16 @@ class Aione_Slider_Public {
 				$settings['slideby'] = $slideby;
 				$settings['slidetransition'] = $slidetransition;
 				$settings['dots'] = $dots;
-				$settings['lazyload'] = $lazyload;
+				$settings['lazy-load'] = $lazyload;
 				$settings['autoplay'] = $autoplay;
 				$settings['autoplaytimeout'] = $autoplaytimeout;
 				$settings['autoplayhoverpause'] = $autoplayhoverpause;
-				$settings['smartspeed'] = $smartspeed;
-				$settings['autoplayspeed'] = $autoplayspeed;
-				$settings['navspeed'] = $navspeed;
-				$settings['dotsspeed'] = $dotsspeed;
+				$settings['smart-speed'] = $smartspeed;
+				$settings['autoplay-speed'] = $autoplayspeed;
+				$settings['nav-speed'] = $navspeed;
+				$settings['dots-speed'] = $dotsspeed;
 				$settings['animation'] = $animation;
+				$settings['navText'] = "[]";
 				$skip_settings   = array(
 					'theme',
 					'caption',

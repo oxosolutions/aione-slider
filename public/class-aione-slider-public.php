@@ -134,7 +134,7 @@ class Aione_Slider_Public {
 				$autoplayspeed = get_field('autoplayspeed', $slider_id);
 				$navspeed = get_field('navspeed', $slider_id);
 				$dotsspeed = get_field('dotsspeed', $slider_id);
-				$animation = get_field('animation', $slider_id);
+				$animation = get_field('animate-out', $slider_id);
 
 				/*
 
@@ -262,7 +262,7 @@ class Aione_Slider_Public {
 				$settings['autoplay-speed'] = $autoplayspeed;
 				$settings['nav-speed'] = $navspeed;
 				$settings['dots-speed'] = $dotsspeed;
-				$settings['animation'] = $animation;
+				$settings['animate-out'] = $animation;
 				$settings['navText'] = "[]";
 				$skip_settings   = array(
 					'theme',
@@ -284,7 +284,7 @@ class Aione_Slider_Public {
 						$slider_data[] = 'data-'.$setting_key.'="'.$setting_value.'" ';
 					}
 				}
-
+				//echo "<pre>";print_r($settings);echo "</pre>";
 				$slider_classes[] = $settings['theme'];
 				$slider_classes = implode(" ",$slider_classes);
 				$slider_data = implode(" ",$slider_data);

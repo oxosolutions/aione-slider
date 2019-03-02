@@ -949,9 +949,9 @@ class Aione_Slider_Admin {
 						'maxlength' => '',
 					),
 					array(
-						'key' => 'field_5bdd847b8f38a',
+						'key' => 'field_5bdd847b8f38b',
 						'label' => 'Animation',
-						'name' => 'animation',
+						'name' => 'animate-out',
 						'type' => 'text',
 						'instructions' => 'Class for CSS3 animation out.',
 						'required' => 0,

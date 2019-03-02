@@ -16,7 +16,7 @@
  * Plugin Name:       Aione Slider
  * Plugin URI:        https://oxosolutions.com/products/wordpress-plugins/aione-slider/
  * Description:       Advanced customizable slider to slide images, text and wordpress posts and custom posts.
- * Version:           1.1.0.0
+ * Version:           1.1.0.1
  * Author:            OXO Solutions®
  * Author URI:        https://oxosolutions.com
  * License:           GPL-2.0+

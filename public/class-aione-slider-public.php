@@ -121,6 +121,11 @@ class Aione_Slider_Public {
 				$image_caption_description = get_field('image_caption_description', $slider_id);
 				$image_caption_link = get_field('image_caption_link', $slider_id);
 				$autohight = get_field('autohight', $slider_id);
+				if( $autohight == 'on' ) {
+					$autohight = 'true';
+				} else{
+					$autohight = 'false';
+				}
 				$urlhashlistener = get_field('urlhashlistener', $slider_id);
 				$nav = get_field('nav', $slider_id);
 				$slideby = get_field('slideby', $slider_id);
@@ -135,6 +140,10 @@ class Aione_Slider_Public {
 				$navspeed = get_field('navspeed', $slider_id);
 				$dotsspeed = get_field('dotsspeed', $slider_id);
 				$animation = get_field('animate-out', $slider_id);
+				$responsive_class = get_field('responsive-class', $slider_id);
+				$responsive_mobile = get_field('responsive-mobile', $slider_id);
+				$responsive_tablet = get_field('responsive-tablet', $slider_id);
+				$responsive_desktop = get_field('responsive-desktop', $slider_id);
 
 				/*
 
@@ -264,6 +273,11 @@ class Aione_Slider_Public {
 				$settings['dots-speed'] = $dotsspeed;
 				$settings['animate-out'] = $animation;
 				$settings['navText'] = "[]";
+				$settings['responsiveClass'] = $responsive_class;
+				$settings['responsive_mobile'] = $responsive_mobile;
+				$settings['responsive_tablet'] = $responsive_tablet;
+				$settings['responsive_desktop'] = $responsive_desktop;
+
 				$skip_settings   = array(
 					'theme',
 					'caption',

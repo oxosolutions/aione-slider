@@ -304,6 +304,52 @@ class Aione_Slider_Public {
 				$slider_data = implode(" ",$slider_data);
 
 
+				if($slider_type == "gallery"){
+
+					$slides = get_field('aione_slider_images', $slider_id);
+
+					$gallery_classes = array('gallery');
+					$gallery_classes[] = 'gallery-columns-' . $settings['items'];
+
+					if( $settings['margin'] ) {
+						$gallery_classes[] = 'margin';
+					}
+					if( $settings['animate-out'] ) {
+						$gallery_classes[] = 'animation-' . $settings['animate-out'];
+					}
+					if( $settings['responsiveClass'] ) {
+						$gallery_classes[] = 's-gallery-columns-' . $settings['responsive_mobile'];
+						$gallery_classes[] = 'm-gallery-columns-' . $settings['responsive_tablet'];
+						$gallery_classes[] = 'l-gallery-columns-' . $settings['responsive_desktop'];
+					}
+
+					$gallery_classes = implode(" ",$gallery_classes);
+
+
+
+					if(!empty($slides)):
+						$output .=  '<div id="aione_gallery_'.$atts['id'].'" class="'.$gallery_classes.'">';
+						foreach ($slides as $key => $slide) { //echo "<pre>";print_r($slide);echo "</pre>";
+							$output .= '<div class="gallery-item">';
+							$output .= '<div class="gallery-image">';
+							$output .= '<img src="'.$slide['url'].'" alt="'.$slide['alt'].'" />';
+							$output .= '</div>';
+							if( $settings['image_caption'] == 'on' ) {
+								$output .= '<div class="gallery-caption">';
+								if($settings['image_caption_title']){
+									$output .= '<h3 class="caption-title">'.$slide['caption'].'</h3>';
+								}
+								if($settings['image_caption_description']){
+									$output .= '<p class="caption-description">'.$slide['description'].'</p>';
+								}
+								$output .= '</div>';
+							}
+							$output .= '</div>';
+						}
+						$output .= '</div>';
+					endif;
+				}
+
 				if($slider_type == "image"){
 					$slides = get_field('aione_slider_images', $slider_id);
 					if(!empty($slides)):
@@ -313,7 +359,7 @@ class Aione_Slider_Public {
 							$output .= '<div class="slider-image">';
 							$output .= '<img src="'.$slide['url'].'" alt="'.$slide['alt'].'" />';
 							$output .= '</div>';
-							if($settings['image_caption']){
+							if($settings['image_caption'] == 'on' ) {
 								$output .= '<div class="slider-caption">';
 								if($settings['image_caption_title']){
 									$output .= '<h3 class="caption-title">'.$slide['caption'].'</h3>';
@@ -328,6 +374,8 @@ class Aione_Slider_Public {
 						$output .= '</div>';
 					endif;
 				}
+
+
 				if($slider_type == "post"){
 					$slider_post_type = get_field('aione_slider_post_type', $slider_id);
 					if($slider_post_type == ""){

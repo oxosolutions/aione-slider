@@ -249,6 +249,7 @@ class Aione_Slider_Admin {
 							'image' => 'Image Slider',
 							'post' => 'Post Slider',
 							'text' => 'Text Slider',
+							'gallery' => 'Picture Gallery',
 						),
 						'allow_null' => 0,
 						'other_choice' => 0,
@@ -270,6 +271,13 @@ class Aione_Slider_Admin {
 									'field' => 'field_5bdd688ade107',
 									'operator' => '==',
 									'value' => 'image',
+								),
+							),
+							array(
+								array(
+									'field' => 'field_5bdd688ade107',
+									'operator' => '==',
+									'value' => 'gallery',
 								),
 							),
 						),

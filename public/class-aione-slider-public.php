@@ -111,6 +111,7 @@ class Aione_Slider_Public {
 
 		if ( get_post_status ( $slider_id ) == 'publish' ) {
 			if ( get_post_type( $slider_id ) == 'aione-slider' ) {
+
 				$slider_type = get_field('aione_slider_type', $slider_id);
 				$items = get_field('items', $slider_id);
 				$theme = get_field('theme', $slider_id);
@@ -278,6 +279,8 @@ class Aione_Slider_Public {
 				$settings['responsive_tablet'] = $responsive_tablet;
 				$settings['responsive_desktop'] = $responsive_desktop;
 
+				$settings['lightbox'] = 'yes';
+
 				$skip_settings   = array(
 					'theme',
 					'caption',
@@ -327,27 +330,53 @@ class Aione_Slider_Public {
 
 
 
-					if(!empty($slides)):
+					if( !empty( $slides ) ) {
+
 						$output .=  '<div id="aione_gallery_'.$atts['id'].'" class="'.$gallery_classes.'">';
-						foreach ($slides as $key => $slide) { //echo "<pre>";print_r($slide);echo "</pre>";
+
+						foreach( $slides as $key => $slide ) { 
+
+							//echo "<pre>";print_r($slide);echo "</pre>";
+							
+
 							$output .= '<div class="gallery-item">';
 							$output .= '<div class="gallery-image">';
-							$output .= '<img src="'.$slide['url'].'" alt="'.$slide['alt'].'" />';
-							$output .= '</div>';
-							if( $settings['image_caption'] == 'on' ) {
-								$output .= '<div class="gallery-caption">';
-								if($settings['image_caption_title']){
-									$output .= '<h3 class="caption-title">'.$slide['caption'].'</h3>';
-								}
-								if($settings['image_caption_description']){
-									$output .= '<p class="caption-description">'.$slide['description'].'</p>';
-								}
-								$output .= '</div>';
+							if( $settings['lightbox'] == 'yes' ) {
+								$output .= '<a href="' . $slide['url'] . '" class="strip" data-strip-caption="' . $slide['alt'] . '" data-strip-group="aione_gallery_' . $slider_id . '">';
+							}
+							
+							$output .= '<img src="' . $slide['url'] . '" ' . $lightbox . ' alt="' . $slide['alt'] . '" />';
+							if( $settings['lightbox'] == 'yes' ) {
+								$output .= '</a>';
 							}
 							$output .= '</div>';
+
+							if( $settings['image_caption'] == 'on' ) {
+
+								$output .= '<div class="gallery-caption">';
+
+								if( $settings['image_caption_title'] ) {
+
+									$output .= '<h3 class="caption-title">' . $slide['caption'] . '</h3>';
+
+								}
+
+								if( $settings['image_caption_description'] ) {
+
+									$output .= '<p class="caption-description">' . $slide['description'] . '</p>';
+
+								}
+
+								$output .= '</div>';
+
+							}
+
+							$output .= '</div>';
 						}
+
 						$output .= '</div>';
-					endif;
+
+					}
 				}
 
 				if($slider_type == "image"){

@@ -145,6 +145,7 @@ class Aione_Slider_Public {
 				$responsive_mobile = get_field('responsive-mobile', $slider_id);
 				$responsive_tablet = get_field('responsive-tablet', $slider_id);
 				$responsive_desktop = get_field('responsive-desktop', $slider_id);
+				$lightbox = get_field('lightbox', $slider_id);
 
 				/*
 
@@ -279,7 +280,7 @@ class Aione_Slider_Public {
 				$settings['responsive_tablet'] = $responsive_tablet;
 				$settings['responsive_desktop'] = $responsive_desktop;
 
-				$settings['lightbox'] = 'yes';
+				$settings['lightbox'] = $lightbox;
 
 				$skip_settings   = array(
 					'theme',

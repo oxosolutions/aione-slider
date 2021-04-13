@@ -58,7 +58,7 @@ class Aione_Slider_Admin {
 		if(!class_exists('acf')){ 
 			add_action( 'admin_notices', array( $this, 'aione_acf_admin_notice' ));
 		} 
-		if(!class_exists('acf_plugin_gallery')){
+		if(!class_exists('acf_pro')){
 			add_action( 'admin_notices', array( $this,'aione_gallery_admin_notice' ));
 		}
 

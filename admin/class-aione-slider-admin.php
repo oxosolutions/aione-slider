@@ -259,32 +259,6 @@ class Aione_Slider_Admin {
 						'save_other_choice' => 0,
 					),
 					array(
-						'key' => 'field_5bdd688ade107',
-						'label' => 'Slider Type',
-						'name' => 'aione_slider_type',
-						'type' => 'radio',
-						'instructions' => '',
-						'required' => 0,
-						'conditional_logic' => 0,
-						'wrapper' => array(
-							'width' => '',
-							'class' => '',
-							'id' => '',
-						),
-						'choices' => array(
-							'image' => 'Image Slider',
-							'post' => 'Post Slider',
-							'text' => 'Text Slider',
-							'gallery' => 'Picture Gallery',
-						),
-						'allow_null' => 0,
-						'other_choice' => 0,
-						'default_value' => '',
-						'layout' => 'vertical',
-						'return_format' => 'value',
-						'save_other_choice' => 0,
-					),
-					array(
 						'key' => 'field_5bdd68d5de108',
 						'label' => 'Slider Images',
 						'name' => 'aione_slider_images',
@@ -430,7 +404,7 @@ class Aione_Slider_Admin {
 							'id' => '',
 						),
 						'collapsed' => '',
-						'min' => 0,
+						'min' => 1,
 						'max' => 0,
 						'layout' => 'table',
 						'button_label' => '',
@@ -497,6 +471,133 @@ class Aione_Slider_Admin {
 						'step' => '',
 					),
 					array(
+						'key' => 'field_5bdd75aacd284',
+						'label' => 'Gallery layout',
+						'name' => 'gallery_layout',
+						'type' => 'select',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => array(
+							array(
+								array(
+									'field' => 'field_5bdd688ade107',
+									'operator' => '==',
+									'value' => 'gallery',
+								),
+							),
+						),
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'choices' => array(
+							'landscape' => 'Rounded',
+							'portrait' => 'Portrait',
+							'square' => 'Square',
+							'circle' => 'Circle',
+						),
+						'default_value' => '',
+						'allow_null' => 1,
+						'multiple' => 0,
+						'ui' => 0,
+						'return_format' => 'value',
+						'ajax' => 0,
+						'placeholder' => '',
+					),
+					array(
+						'key' => 'field_5bdd75aacd285',
+						'label' => 'Gallery Transition',
+						'name' => 'gallery_transition',
+						'type' => 'select',
+						'instructions' => 'You can use the transition for the image',
+						'required' => 0,
+						'conditional_logic' => array(
+							array(
+								array(
+									'field' => 'field_5bdd688ade107',
+									'operator' => '==',
+									'value' => 'gallery',
+								),
+							),
+						),
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'choices' => array(
+							'false' => 'No transition',
+							'transition-fade-bottom' => 'Transition Fade Bottom',
+							'transition-fade-left' => 'Transition Fade Left',
+							'transition-fade-right' => 'Transition Fade Right',
+							'transition-fade-top' => 'Transition Fade Top',
+							'transition-mxrotate-bottom' => 'Transition Mxrotate Bottom',
+							'transition-mxrotate-left' => 'Transition Mxrotate Left',
+							'transition-mxrotate-right' => 'Transition Mxrotate Right',
+							'transition-mxrotate-top' => 'Transition Mxrotate Top',
+							'transition-slide-bottom' => 'Transition Slide Bottom',
+							'transition-slide-left' => 'Transition Slide Left',
+							'transition-slide-right' => 'Transition Slide Right',
+							'transition-slide-top' => 'Transition Slide Top',
+							'transition-push-bottom' => 'Transition Push Bottom',
+							'transition-push-left' => 'Transition Push Left',
+							'transition-push-right' => 'Transition Push Right',
+							'transition-push-top' => 'Transition Push Top',
+							'transition-rotateslide-bottom' => 'Transition Rotateslide Bottom',
+							'transition-rotateslide-left' => 'Transition Rotateslide Left',
+							'transition-rotateslide-right' => 'Transition Rotateslide Right',
+							'transition-rotateslide-top' => 'Transition Rotateslide Top',
+							'transition-flip-bottom' => 'Transition Flip Bottom',
+							'transition-flip-left' => 'Transition Flip Left',
+							'transition-flip-right' => 'Transition Flip Right',
+							'transition-flip-top' => 'Transition Flip Top',
+							'transition-minimize-bottom' => 'Transition Minimize Bottom',
+							'transition-minimize-left' => 'Transition Minimize Left',
+							'transition-minimize-right' => 'Transition Minimize Right',
+							'transition-minimize-top' => 'Transition Minimize Top'
+						),
+						'default_value' => '',
+						'placeholder' => '',
+						'prepend' => '',
+						'append' => '',
+						'maxlength' => '',
+					),
+					array(
+						'key' => 'field_5bdd75aacd286',
+						'label' => 'Gallery Animation',
+						'name' => 'gallery_animation',
+						'type' => 'select',
+						'instructions' => 'Select an animation for your image',
+						'required' => 0,
+						'conditional_logic' => array(
+							array(
+								array(
+									'field' => 'field_5bdd688ade107',
+									'operator' => '==',
+									'value' => 'gallery',
+								),
+							),
+						),
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'choices' => array(
+							'false' => 'No animation',
+							'animation-zoom' => 'Animation zoom',
+							'animation-rotate' => 'Animation rotate',
+							'animation-zoomrotate' => 'Animation zoomrotate',
+							'animation-mxrotate' => 'Animation mxrotate',
+						),
+						'default_value' => '',
+						'placeholder' => '',
+						'prepend' => '',
+						'append' => '',
+						'maxlength' => '',
+					),
+					array(
 						'key' => 'field_5bdd75aacd283',
 						'label' => 'Theme',
 						'name' => 'theme',
@@ -543,6 +644,53 @@ class Aione_Slider_Admin {
 						'append' => '',
 						'maxlength' => '',
 					),
+
+					array(
+						'key' => 'field_5bdd7614cd285',
+						'label' => 'Padding',
+						'name' => 'padding',
+						'type' => 'text',
+						'instructions' => 'padding(px) on caption.',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'default_value' => 10,
+						'placeholder' => '',
+						'prepend' => '',
+						'append' => '',
+						'maxlength' => '',
+					),
+					array(
+						'key' => 'field_5bdd7614cd287',
+						'label' => 'Outline',
+						'name' => 'outline',
+						'type' => 'true_false',
+						'instructions' => 'Select if you want an outline for image.',
+						'required' => 0,
+						'conditional_logic' => array(
+							array(
+								array(
+									'field' => 'field_5bdd688ade107',
+									'operator' => '==',
+									'value' => 'gallery',
+								),
+							),
+						),
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'message' => '',
+						'default_value' => 0,
+						'ui' => 1,
+						'ui_on_text' => 'Yes',
+						'ui_off_text' => 'No',
+					),
 					array(
 						'key' => 'field_5bdd7670cd286',
 						'label' => 'Loop',
@@ -576,7 +724,22 @@ class Aione_Slider_Admin {
 						'type' => 'radio',
 						'instructions' => '',
 						'required' => 0,
-						'conditional_logic' => 0,
+						'conditional_logic' => array(
+							array(
+								array(
+									'field' => 'field_5bdd688ade107',
+									'operator' => '==',
+									'value' => 'image',
+								),
+							),
+							array(
+								array(
+									'field' => 'field_5bdd688ade107',
+									'operator' => '==',
+									'value' => 'gallery',
+								),
+							),
+						),
 						'wrapper' => array(
 							'width' => '',
 							'class' => '',
@@ -600,7 +763,22 @@ class Aione_Slider_Admin {
 						'type' => 'radio',
 						'instructions' => '',
 						'required' => 0,
-						'conditional_logic' => 0,
+						'conditional_logic' => array(
+							array(
+								array(
+									'field' => 'field_5bdd688ade107',
+									'operator' => '==',
+									'value' => 'image',
+								),
+							),
+							array(
+								array(
+									'field' => 'field_5bdd688ade107',
+									'operator' => '==',
+									'value' => 'gallery',
+								),
+							),
+						),
 						'wrapper' => array(
 							'width' => '',
 							'class' => '',
@@ -624,7 +802,22 @@ class Aione_Slider_Admin {
 						'type' => 'radio',
 						'instructions' => '',
 						'required' => 0,
-						'conditional_logic' => 0,
+						'conditional_logic' => array(
+							array(
+								array(
+									'field' => 'field_5bdd688ade107',
+									'operator' => '==',
+									'value' => 'image',
+								),
+							),
+							array(
+								array(
+									'field' => 'field_5bdd688ade107',
+									'operator' => '==',
+									'value' => 'gallery',
+								),
+							),
+						),
 						'wrapper' => array(
 							'width' => '',
 							'class' => '',
@@ -648,7 +841,22 @@ class Aione_Slider_Admin {
 						'type' => 'radio',
 						'instructions' => '',
 						'required' => 0,
-						'conditional_logic' => 0,
+						'conditional_logic' => array(
+							array(
+								array(
+									'field' => 'field_5bdd688ade107',
+									'operator' => '==',
+									'value' => 'image',
+								),
+							),
+							array(
+								array(
+									'field' => 'field_5bdd688ade107',
+									'operator' => '==',
+									'value' => 'gallery',
+								),
+							),
+						),
 						'wrapper' => array(
 							'width' => '',
 							'class' => '',
@@ -767,7 +975,15 @@ class Aione_Slider_Admin {
 						'type' => 'text',
 						'instructions' => 'You can define the transition for the stage you want to use eg. linear.',
 						'required' => 0,
-						'conditional_logic' => 0,
+						'conditional_logic' => array(
+							array(
+								array(
+									'field' => 'field_5bdd688ade107',
+									'operator' => '!=',
+									'value' => 'gallery',
+								),
+							),
+						),
 						'wrapper' => array(
 							'width' => '',
 							'class' => '',
@@ -989,13 +1205,21 @@ class Aione_Slider_Admin {
 						'type' => 'text',
 						'instructions' => 'Class for CSS3 animation out.',
 						'required' => 0,
-						'conditional_logic' => 0,
+						'conditional_logic' => array(
+							array(
+								array(
+									'field' => 'field_5bdd688ade107',
+									'operator' => '!=',
+									'value' => 'gallery',
+								),
+							),
+						),
 						'wrapper' => array(
 							'width' => '',
 							'class' => '',
 							'id' => '',
 						),
-						'default_value' => 'false',
+						'default_value' => '',
 						'placeholder' => '',
 						'prepend' => '',
 						'append' => '',

@@ -114,8 +114,15 @@ class Aione_Slider_Public {
 
 				$slider_type = get_field('aione_slider_type', $slider_id);
 				$items = get_field('items', $slider_id);
+
+				$gallery_layout = get_field('gallery_layout', $slider_id);
+				$gallery_transition = get_field('gallery_transition', $slider_id);
+				$gallery_animation = get_field('gallery_animation', $slider_id);
+
 				$theme = get_field('theme', $slider_id);
 				$margin = get_field('margin', $slider_id);
+				$padding = get_field('padding', $slider_id);
+				$outline = get_field('outline', $slider_id);
 				$loop = get_field('loop', $slider_id);
 				$image_caption = get_field('image_caption', $slider_id);
 				$image_caption_title = get_field('image_caption_title', $slider_id);
@@ -254,6 +261,8 @@ class Aione_Slider_Public {
 				$settings['items'] = $items;
 				$settings['theme'] = $theme;
 				$settings['margin'] = $margin;
+				$settings['padding'] = $padding;
+				$settings['outline'] = $outline;
 				$settings['loop'] = $loop;
 				$settings['image_caption'] = $image_caption;
 				$settings['image_caption_title'] = $image_caption_title;
@@ -289,7 +298,10 @@ class Aione_Slider_Public {
 					'caption_description',
 					'caption_link',
 					'URLhashListener',
+					'lightbox',
 				);
+
+
 				$slider_classes = array('slider','owl-carousel');
 				$slider_data = array();
 
@@ -301,8 +313,9 @@ class Aione_Slider_Public {
 						$setting_key = strtolower(preg_replace('/(?<!^)[A-Z]/', '-$0', $setting_key));
 						$slider_data[] = 'data-'.$setting_key.'="'.$setting_value.'" ';
 					}
-				}
-				//echo "<pre>";print_r($settings);echo "</pre>";
+				} 
+
+
 				$slider_classes[] = $settings['theme'];
 				$slider_classes = implode(" ",$slider_classes);
 				$slider_data = implode(" ",$slider_data);
@@ -310,16 +323,37 @@ class Aione_Slider_Public {
 
 				if($slider_type == "gallery"){
 
+
 					$slides = get_field('aione_slider_images', $slider_id);
 
 					$gallery_classes = array('gallery');
 					$gallery_classes[] = 'gallery-columns-' . $settings['items'];
 
+					if($settings['lazy-load'] == 'true') {
+						$lazyimg = ' loading="lazy" ';
+					}
+					else {
+						$lazyimg = '';
+					}
+
 					if( $settings['margin'] ) {
 						$gallery_classes[] = 'margin';
 					}
-					if( $settings['animate-out'] ) {
-						$gallery_classes[] = 'animation-' . $settings['animate-out'];
+					if( $settings['padding'] ) {
+						$caption_class = 'p-'.$settings['padding'];
+					}
+
+					if( $settings['outline'] ) {
+						$gallery_classes[] = 'outline';
+					}
+					if( $gallery_layout ) {
+						$gallery_classes[] = $gallery_layout;
+					}
+					if( $gallery_transition ) {
+						$gallery_classes[] = $gallery_transition;
+					}
+					if( $gallery_animation ) {
+						$gallery_classes[] = $gallery_animation;
 					}
 					if( $settings['responsiveClass'] ) {
 						$gallery_classes[] = 's-gallery-columns-' . $settings['responsive_mobile'];
@@ -338,23 +372,24 @@ class Aione_Slider_Public {
 						foreach( $slides as $key => $slide ) { 
 
 							//echo "<pre>";print_r($slide);echo "</pre>";
-							
 
 							$output .= '<div class="gallery-item">';
-							$output .= '<div class="gallery-image">';
+
 							if( $settings['lightbox'] == 'yes' ) {
-								$output .= '<a href="' . $slide['url'] . '" class="strip" data-strip-caption="' . $slide['alt'] . '" data-strip-group="aione_gallery_' . $slider_id . '">';
+								$output .= '<a href="' . $slide['url'] . '" data-lightbox="image" data-strip-group="aione_gallery_' . $slider_id . '">';
 							}
+
+							$output .= '<div class="gallery-icon">';
 							
-							$output .= '<img src="' . $slide['url'] . '" ' . $lightbox . ' alt="' . $slide['alt'] . '" />';
-							if( $settings['lightbox'] == 'yes' ) {
-								$output .= '</a>';
-							}
+							
+							$output .= '<img' . $lazyimg . ' src="' . $slide['url'] . '" alt="' . $slide['alt'] . '" />';
+
+							
 							$output .= '</div>';
 
 							if( $settings['image_caption'] == 'on' ) {
 
-								$output .= '<div class="gallery-caption">';
+								$output .= '<div class="gallery-caption '.$caption_class.'">';
 
 								if( $settings['image_caption_title'] ) {
 
@@ -372,6 +407,9 @@ class Aione_Slider_Public {
 
 							}
 
+							if( $settings['lightbox'] == 'yes' ) {
+									$output .= '</a>';
+							}
 							$output .= '</div>';
 						}
 

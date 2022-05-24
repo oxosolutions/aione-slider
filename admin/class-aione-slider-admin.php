@@ -55,12 +55,15 @@ class Aione_Slider_Admin {
 		add_action( 'init', array( $this, 'register_aione_slider' ));
 		add_action( 'init',array( $this, 'register_aione_slider_settings' ), 10 );
 
+		/*
+
 		if(!class_exists('acf')){ 
 			add_action( 'admin_notices', array( $this, 'aione_acf_admin_notice' ));
 		} 
 		if(!class_exists('acf_pro')){
 			add_action( 'admin_notices', array( $this,'aione_gallery_admin_notice' ));
 		}
+		*/
 
 	}
 
